@@ -1,0 +1,3 @@
+C:/Users/sigterm/Desktop/secucom/apps/libraries/mimeparser/build/CMakeFiles/MimeParser.dir
+C:/Users/sigterm/Desktop/secucom/apps/libraries/mimeparser/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/sigterm/Desktop/secucom/apps/libraries/mimeparser/build/CMakeFiles/ZERO_CHECK.dir

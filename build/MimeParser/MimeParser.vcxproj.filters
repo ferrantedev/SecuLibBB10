@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\sigterm\Desktop\secucom\apps\libraries\seculib\MimeParser\src\MimeParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\sigterm\Desktop\secucom\apps\libraries\seculib\MimeParser\include\MimeParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\sigterm\Desktop\secucom\apps\libraries\seculib\MimeParser\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E29BACD4-06A2-3F68-995D-2406F990DB08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{B4441D9C-DE05-3255-96D4-BA5DF9053058}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
