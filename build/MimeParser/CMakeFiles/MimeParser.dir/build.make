@@ -37,19 +37,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
+CMAKE_COMMAND = D:/cmake/bin/cmake.exe
 
 # The command to remove a file.
-RM = /Applications/CMake.app/Contents/bin/cmake -E remove -f
+RM = D:/cmake/bin/cmake.exe -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/lorenzoferrante/seculib/src
+CMAKE_SOURCE_DIR = C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/lorenzoferrante/seculib/build
+CMAKE_BINARY_DIR = C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build
 
 # Include any dependencies generated for this target.
 include MimeParser/CMakeFiles/MimeParser.dir/depend.make
@@ -61,17 +61,17 @@ include MimeParser/CMakeFiles/MimeParser.dir/progress.make
 include MimeParser/CMakeFiles/MimeParser.dir/flags.make
 
 MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj: MimeParser/CMakeFiles/MimeParser.dir/flags.make
-MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj: /Users/lorenzoferrante/seculib/src/MimeParser/src/MimeParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lorenzoferrante/seculib/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj"
-	cd /Users/lorenzoferrante/seculib/build/MimeParser && /Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/qcc -lang-c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj -c /Users/lorenzoferrante/seculib/src/MimeParser/src/MimeParser.cpp
+MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/src/MimeParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj"
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser && d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe -lang-c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj -c C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/src/MimeParser.cpp
 
 MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MimeParser.dir/src/MimeParser.cpp.i"
-	cd /Users/lorenzoferrante/seculib/build/MimeParser && /Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/qcc $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lorenzoferrante/seculib/src/MimeParser/src/MimeParser.cpp > CMakeFiles/MimeParser.dir/src/MimeParser.cpp.i
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser && d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/src/MimeParser.cpp > CMakeFiles/MimeParser.dir/src/MimeParser.cpp.i
 
 MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MimeParser.dir/src/MimeParser.cpp.s"
-	cd /Users/lorenzoferrante/seculib/build/MimeParser && /Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/qcc $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lorenzoferrante/seculib/src/MimeParser/src/MimeParser.cpp -o CMakeFiles/MimeParser.dir/src/MimeParser.cpp.s
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser && d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/src/MimeParser.cpp -o CMakeFiles/MimeParser.dir/src/MimeParser.cpp.s
 
 MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj.requires:
 
@@ -94,9 +94,9 @@ MimeParser_EXTERNAL_OBJECTS =
 MimeParser/libMimeParser.a: MimeParser/CMakeFiles/MimeParser.dir/src/MimeParser.cpp.obj
 MimeParser/libMimeParser.a: MimeParser/CMakeFiles/MimeParser.dir/build.make
 MimeParser/libMimeParser.a: MimeParser/CMakeFiles/MimeParser.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lorenzoferrante/seculib/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libMimeParser.a"
-	cd /Users/lorenzoferrante/seculib/build/MimeParser && $(CMAKE_COMMAND) -P CMakeFiles/MimeParser.dir/cmake_clean_target.cmake
-	cd /Users/lorenzoferrante/seculib/build/MimeParser && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MimeParser.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libMimeParser.a"
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser && $(CMAKE_COMMAND) -P CMakeFiles/MimeParser.dir/cmake_clean_target.cmake
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MimeParser.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 MimeParser/CMakeFiles/MimeParser.dir/build: MimeParser/libMimeParser.a
@@ -108,10 +108,10 @@ MimeParser/CMakeFiles/MimeParser.dir/requires: MimeParser/CMakeFiles/MimeParser.
 .PHONY : MimeParser/CMakeFiles/MimeParser.dir/requires
 
 MimeParser/CMakeFiles/MimeParser.dir/clean:
-	cd /Users/lorenzoferrante/seculib/build/MimeParser && $(CMAKE_COMMAND) -P CMakeFiles/MimeParser.dir/cmake_clean.cmake
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser && $(CMAKE_COMMAND) -P CMakeFiles/MimeParser.dir/cmake_clean.cmake
 .PHONY : MimeParser/CMakeFiles/MimeParser.dir/clean
 
 MimeParser/CMakeFiles/MimeParser.dir/depend:
-	cd /Users/lorenzoferrante/seculib/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/lorenzoferrante/seculib/src /Users/lorenzoferrante/seculib/src/MimeParser /Users/lorenzoferrante/seculib/build /Users/lorenzoferrante/seculib/build/MimeParser /Users/lorenzoferrante/seculib/build/MimeParser/CMakeFiles/MimeParser.dir/DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser/CMakeFiles/MimeParser.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : MimeParser/CMakeFiles/MimeParser.dir/depend
 

@@ -1,8 +1,8 @@
-# Install script for directory: /Users/lorenzoferrante/seculib/src
+# Install script for directory: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/Applications/Momentics.app/host_10_3_1_12/darwin/x86/user")
+  set(CMAKE_INSTALL_PREFIX "d:/momentics/bbndk/host_10_3_1_12/win32/x86/user")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,8 +34,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/lorenzoferrante/seculib/build/MimeParser/cmake_install.cmake")
-  include("/Users/lorenzoferrante/seculib/build/SecuCrypto/cmake_install.cmake")
+  include("C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser/cmake_install.cmake")
+  include("C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto/cmake_install.cmake")
 
 endif()
 
@@ -47,5 +47,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/lorenzoferrante/seculib/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

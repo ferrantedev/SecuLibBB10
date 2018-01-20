@@ -37,19 +37,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
+CMAKE_COMMAND = D:/cmake/bin/cmake.exe
 
 # The command to remove a file.
-RM = /Applications/CMake.app/Contents/bin/cmake -E remove -f
+RM = D:/cmake/bin/cmake.exe -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/lorenzoferrante/seculib/src
+CMAKE_SOURCE_DIR = C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/lorenzoferrante/seculib/build
+CMAKE_BINARY_DIR = C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build
 
 # Include any dependencies generated for this target.
 include SecuCrypto/CMakeFiles/SecuCrypto.dir/depend.make
@@ -61,17 +61,17 @@ include SecuCrypto/CMakeFiles/SecuCrypto.dir/progress.make
 include SecuCrypto/CMakeFiles/SecuCrypto.dir/flags.make
 
 SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj: SecuCrypto/CMakeFiles/SecuCrypto.dir/flags.make
-SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj: /Users/lorenzoferrante/seculib/src/SecuCrypto/src/SecuCrypto.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lorenzoferrante/seculib/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj"
-	cd /Users/lorenzoferrante/seculib/build/SecuCrypto && /Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/qcc -lang-c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj -c /Users/lorenzoferrante/seculib/src/SecuCrypto/src/SecuCrypto.cpp
+SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/src/SecuCrypto.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj"
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto && d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe -lang-c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj -c C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/src/SecuCrypto.cpp
 
 SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.i"
-	cd /Users/lorenzoferrante/seculib/build/SecuCrypto && /Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/qcc $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lorenzoferrante/seculib/src/SecuCrypto/src/SecuCrypto.cpp > CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.i
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto && d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/src/SecuCrypto.cpp > CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.i
 
 SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.s"
-	cd /Users/lorenzoferrante/seculib/build/SecuCrypto && /Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/qcc $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lorenzoferrante/seculib/src/SecuCrypto/src/SecuCrypto.cpp -o CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.s
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto && d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/src/SecuCrypto.cpp -o CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.s
 
 SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj.requires:
 
@@ -94,9 +94,9 @@ SecuCrypto_EXTERNAL_OBJECTS =
 SecuCrypto/libSecuCrypto.a: SecuCrypto/CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj
 SecuCrypto/libSecuCrypto.a: SecuCrypto/CMakeFiles/SecuCrypto.dir/build.make
 SecuCrypto/libSecuCrypto.a: SecuCrypto/CMakeFiles/SecuCrypto.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lorenzoferrante/seculib/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libSecuCrypto.a"
-	cd /Users/lorenzoferrante/seculib/build/SecuCrypto && $(CMAKE_COMMAND) -P CMakeFiles/SecuCrypto.dir/cmake_clean_target.cmake
-	cd /Users/lorenzoferrante/seculib/build/SecuCrypto && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SecuCrypto.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libSecuCrypto.a"
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto && $(CMAKE_COMMAND) -P CMakeFiles/SecuCrypto.dir/cmake_clean_target.cmake
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SecuCrypto.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 SecuCrypto/CMakeFiles/SecuCrypto.dir/build: SecuCrypto/libSecuCrypto.a
@@ -108,10 +108,10 @@ SecuCrypto/CMakeFiles/SecuCrypto.dir/requires: SecuCrypto/CMakeFiles/SecuCrypto.
 .PHONY : SecuCrypto/CMakeFiles/SecuCrypto.dir/requires
 
 SecuCrypto/CMakeFiles/SecuCrypto.dir/clean:
-	cd /Users/lorenzoferrante/seculib/build/SecuCrypto && $(CMAKE_COMMAND) -P CMakeFiles/SecuCrypto.dir/cmake_clean.cmake
+	cd C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto && $(CMAKE_COMMAND) -P CMakeFiles/SecuCrypto.dir/cmake_clean.cmake
 .PHONY : SecuCrypto/CMakeFiles/SecuCrypto.dir/clean
 
 SecuCrypto/CMakeFiles/SecuCrypto.dir/depend:
-	cd /Users/lorenzoferrante/seculib/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/lorenzoferrante/seculib/src /Users/lorenzoferrante/seculib/src/SecuCrypto /Users/lorenzoferrante/seculib/build /Users/lorenzoferrante/seculib/build/SecuCrypto /Users/lorenzoferrante/seculib/build/SecuCrypto/CMakeFiles/SecuCrypto.dir/DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto/CMakeFiles/SecuCrypto.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : SecuCrypto/CMakeFiles/SecuCrypto.dir/depend
 

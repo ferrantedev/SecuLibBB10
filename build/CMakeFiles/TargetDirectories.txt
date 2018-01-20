@@ -1,0 +1,8 @@
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/CMakeFiles/edit_cache.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/CMakeFiles/rebuild_cache.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser/CMakeFiles/MimeParser.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser/CMakeFiles/edit_cache.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/MimeParser/CMakeFiles/rebuild_cache.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto/CMakeFiles/edit_cache.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto/CMakeFiles/SecuCrypto.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build/SecuCrypto/CMakeFiles/rebuild_cache.dir

@@ -30,7 +30,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.command</key>
-					<value>/Applications/Xcode.app/Contents/Developer/usr/bin/make</value>
+					<value>make</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.contents</key>
@@ -46,7 +46,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>/Users/lorenzoferrante/seculib/build</value>
+					<value>C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.useDefaultBuildCmd</key>
@@ -82,7 +82,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.build.location</key>
-					<value>/Users/lorenzoferrante/seculib/build</value>
+					<value>C:/Users/z/Desktop/Secucom_projects/bb10/seculib/build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.autoBuildTarget</key>
@@ -109,7 +109,7 @@
 		<link>
 			<name>[Source directory]</name>
 			<type>2</type>
-			<location>/Users/lorenzoferrante/seculib/src</location>
+			<location>C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src</location>
 		</link>
 	</linkedResources>
 </projectDescription>

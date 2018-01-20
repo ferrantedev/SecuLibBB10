@@ -228,7 +228,7 @@ namespace mime {
 				receivedAttachmentList.push_back(attachmentSavePath + file_name);
 			}
 			else {
-				pData = content_body.data();
+				pData = &content_body[0];
 			}
 			//Erase the content we have parsed
 			buf.erase(first_boundary, second_boundary);

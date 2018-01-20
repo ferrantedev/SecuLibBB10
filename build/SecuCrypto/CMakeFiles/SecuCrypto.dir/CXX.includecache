@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/lorenzoferrante/seculib/src/MimeParser/include/MimeParser.hpp
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/include/MimeParser.hpp
 fstream
 -
 memory
@@ -38,7 +38,7 @@ stdio.h
 stdint.h
 -
 
-/Users/lorenzoferrante/seculib/src/SecuCrypto/include/SecuCrypto.hpp
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/include/SecuCrypto.hpp
 openssl/bio.h
 -
 unistd.h
@@ -52,9 +52,9 @@ iostream
 vector
 -
 
-/Users/lorenzoferrante/seculib/src/SecuCrypto/src/SecuCrypto.cpp
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/src/SecuCrypto.cpp
 SecuCrypto.hpp
-/Users/lorenzoferrante/seculib/src/SecuCrypto/src/SecuCrypto.hpp
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/src/SecuCrypto.hpp
 openssl/rsa.h
 -
 openssl/pem.h
@@ -86,5 +86,5 @@ fstream
 algorithm
 -
 MimeParser.hpp
-/Users/lorenzoferrante/seculib/src/SecuCrypto/src/MimeParser.hpp
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/src/MimeParser.hpp
 

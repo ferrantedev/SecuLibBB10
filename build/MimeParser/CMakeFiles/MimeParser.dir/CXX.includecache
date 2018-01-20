@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/lorenzoferrante/seculib/src/MimeParser/include/MimeParser.hpp
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/include/MimeParser.hpp
 fstream
 -
 memory
@@ -38,9 +38,9 @@ stdio.h
 stdint.h
 -
 
-/Users/lorenzoferrante/seculib/src/MimeParser/src/MimeParser.cpp
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/src/MimeParser.cpp
 MimeParser.hpp
-/Users/lorenzoferrante/seculib/src/MimeParser/src/MimeParser.hpp
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/src/MimeParser.hpp
 openssl/rand.h
 -
 

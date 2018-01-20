@@ -1,0 +1,6 @@
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/CMakeFiles/ALL_BUILD.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/CMakeFiles/ZERO_CHECK.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/CMakeFiles/MimeParser.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/MimeParser/CMakeFiles/ALL_BUILD.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/CMakeFiles/SecuCrypto.dir
+C:/Users/z/Desktop/Secucom_projects/bb10/seculib/src/SecuCrypto/CMakeFiles/ALL_BUILD.dir

@@ -1,0 +1,232 @@
+The target system is: BlackBerry - 1 - 
+The host system is: Windows - 10.0.16299 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe 
+Build flags: ;-V4.6.3,gcc_ntoarmv7le;-Y_gpp;-D__QNX__;;-V4.6.3,gcc_ntoarmv7le;-D__QNX__;-fexceptions
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/3.10.2/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe 
+Build flags: ;-V4.6.3,gcc_ntoarmv7le;-Y_gpp;-D__QNX__;;-V4.6.3,gcc_ntoarmv7le;-Y_gpp;-D__QNX__;-fexceptions
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/3.10.2/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_5820e/fast"
+make -f CMakeFiles/cmTC_5820e.dir/build.make CMakeFiles/cmTC_5820e.dir/build
+make[1]: Entering directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5820e.dir/testCCompiler.c.obj
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe   -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -D__QNX__ -fexceptions    -o CMakeFiles/cmTC_5820e.dir/testCCompiler.c.obj   -c C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_5820e
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -D__QNX__ -fexceptions   -lm -lEGL -lGLESv2 -lbps -lscreen  "CMakeFiles/cmTC_5820e.dir/testCCompiler.c.obj"   -o cmTC_5820e 
+make[1]: Leaving directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_b37a4/fast"
+make -f CMakeFiles/cmTC_b37a4.dir/build.make CMakeFiles/cmTC_b37a4.dir/build
+make[1]: Entering directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe   -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -D__QNX__ -fexceptions    -o CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj   -c D:/cmake/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_b37a4
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -D__QNX__ -fexceptions   -lm -lEGL -lGLESv2 -lbps -lscreen -v "CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj"   -o cmTC_b37a4 
+cc: looking for gcc_ntoarmv7le_gpp in d:/momentics/bbndk/host_10_3_1_12/win32/x86/etc/qcc/gcc/4.6.3/gcc_ntoarmv7le_gpp++.conf
+cc: looking for gcc_ntoarmv7le_gpp in d:/momentics/bbndk/host_10_3_1_12/win32/x86/etc/qcc/gcc/4.6.3/gcc_ntoarmv7le_gpp.conf
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/ntoarm-ld -EL -m armnto --dynamic-linker /usr/lib/ldqnx.so.2 --sysroot=d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7 --hash-style=gnu --build-id=md5 --warn-shared-textrel -zrelro --eh-frame-hdr -pie d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crt1S.o d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crti.o d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtbegin.o -lm -lEGL -lGLESv2 -lbps -lscreen CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj -o cmTC_b37a4 -rpath-link d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -Y/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -Ld:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/ -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3 -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib/ -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a -lc -Bstatic -lcS d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtend.o d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crtn.o
+cc: removing  C:/Users/z/AppData/Local/Temp\2qccbe89fa
+make[1]: Leaving directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ntoarmv7-ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"make" "cmTC_b37a4/fast"]
+  ignore line: [make -f CMakeFiles/cmTC_b37a4.dir/build.make CMakeFiles/cmTC_b37a4.dir/build]
+  ignore line: [make[1]: Entering directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe   -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -D__QNX__ -fexceptions    -o CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj   -c D:/cmake/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_b37a4]
+  ignore line: [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -D__QNX__ -fexceptions   -lm -lEGL -lGLESv2 -lbps -lscreen -v "CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj"   -o cmTC_b37a4 ]
+  ignore line: [cc: looking for gcc_ntoarmv7le_gpp in d:/momentics/bbndk/host_10_3_1_12/win32/x86/etc/qcc/gcc/4.6.3/gcc_ntoarmv7le_gpp++.conf]
+  ignore line: [cc: looking for gcc_ntoarmv7le_gpp in d:/momentics/bbndk/host_10_3_1_12/win32/x86/etc/qcc/gcc/4.6.3/gcc_ntoarmv7le_gpp.conf]
+  link line: [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/ntoarm-ld -EL -m armnto --dynamic-linker /usr/lib/ldqnx.so.2 --sysroot=d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7 --hash-style=gnu --build-id=md5 --warn-shared-textrel -zrelro --eh-frame-hdr -pie d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crt1S.o d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crti.o d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtbegin.o -lm -lEGL -lGLESv2 -lbps -lscreen CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj -o cmTC_b37a4 -rpath-link d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -Y/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -Ld:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/ -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3 -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib/ -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a -lc -Bstatic -lcS d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtend.o d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crtn.o]
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/ntoarm-ld] ==> ignore
+    arg [-EL] ==> ignore
+    arg [-m] ==> ignore
+    arg [armnto] ==> ignore
+    arg [--dynamic-linker] ==> ignore
+    arg [/usr/lib/ldqnx.so.2] ==> ignore
+    arg [--sysroot=d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [--build-id=md5] ==> ignore
+    arg [--warn-shared-textrel] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-pie] ==> ignore
+    arg [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crt1S.o] ==> ignore
+    arg [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crti.o] ==> ignore
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtbegin.o] ==> ignore
+    arg [-lm] ==> lib [m]
+    arg [-lEGL] ==> lib [EGL]
+    arg [-lGLESv2] ==> lib [GLESv2]
+    arg [-lbps] ==> lib [bps]
+    arg [-lscreen] ==> lib [screen]
+    arg [CMakeFiles/cmTC_b37a4.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_b37a4] ==> ignore
+    arg [-rpath-link] ==> ignore
+    arg [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> ignore
+    arg [-Y/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> dirs [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib;/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib;/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+    arg [-Ld:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/] ==> dir [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib/] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib/]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a] ==> lib [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a]
+    arg [-lc] ==> lib [c]
+    arg [-Bstatic] ==> ignore
+    arg [-lcS] ==> lib [cS]
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a] ==> lib [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a]
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtend.o] ==> ignore
+    arg [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crtn.o] ==> ignore
+  collapse lib [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a] ==> [D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/libgcc.a]
+  collapse lib [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a] ==> [D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/libgcc.a]
+  collapse library dir [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib] ==> [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib]
+  collapse library dir [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib] ==> [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib]
+  collapse library dir [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+  collapse library dir [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/] ==> [D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib/] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+  implicit libs: [m;EGL;GLESv2;bps;screen;D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/libgcc.a;c;cS;D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/libgcc.a]
+  implicit dirs: [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib;/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib;/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib;D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3;D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3;D:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib;D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib;D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib;D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+  implicit fwks: []
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_d592d/fast"
+make -f CMakeFiles/cmTC_d592d.dir/build.make CMakeFiles/cmTC_d592d.dir/build
+make[1]: Entering directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d592d.dir/testCXXCompiler.cxx.obj
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe -lang-c++   -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__ -fexceptions    -o CMakeFiles/cmTC_d592d.dir/testCXXCompiler.cxx.obj -c C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_d592d
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe -lang-c++  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__ -fexceptions   -lm -lEGL -lGLESv2 -lbps -lscreen  "CMakeFiles/cmTC_d592d.dir/testCXXCompiler.cxx.obj"   -o cmTC_d592d 
+make[1]: Leaving directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp
+
+Run Build Command:"make" "cmTC_09526/fast"
+make -f CMakeFiles/cmTC_09526.dir/build.make CMakeFiles/cmTC_09526.dir/build
+make[1]: Entering directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe -lang-c++   -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__ -fexceptions    -o CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj -c D:/cmake/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_09526
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe -lang-c++  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__ -fexceptions   -lm -lEGL -lGLESv2 -lbps -lscreen -v "CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj"   -o cmTC_09526 
+cc: looking for gcc_ntoarmv7le_gpp in d:/momentics/bbndk/host_10_3_1_12/win32/x86/etc/qcc/gcc/4.6.3/gcc_ntoarmv7le_gpp++.conf
+cc: looking for gcc_ntoarmv7le_gpp in d:/momentics/bbndk/host_10_3_1_12/win32/x86/etc/qcc/gcc/4.6.3/gcc_ntoarmv7le_gpp.conf
+d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/ntoarm-ld -EL -m armnto --dynamic-linker /usr/lib/ldqnx.so.2 --sysroot=d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7 --hash-style=gnu --build-id=md5 --warn-shared-textrel -zrelro --eh-frame-hdr -pie d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crt1S.o d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crti.o d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtbegin.o -lm -lEGL -lGLESv2 -lbps -lscreen CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_09526 -rpath-link d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -Y/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -Ld:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3// -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3 -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib// -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -lstdc++ -lm -lcxa d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a -lcxa -lc -Bstatic -lcS d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtend.o d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crtn.o
+cc: removing  C:/Users/z/AppData/Local/Temp\2qccv1X2ya
+make[1]: Leaving directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp'
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ntoarmv7-ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: C:/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"make" "cmTC_09526/fast"]
+  ignore line: [make -f CMakeFiles/cmTC_09526.dir/build.make CMakeFiles/cmTC_09526.dir/build]
+  ignore line: [make[1]: Entering directory `/c/Users/z/Desktop/Secucom_projects/bb10/seculib/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe -lang-c++   -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__ -fexceptions    -o CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj -c D:/cmake/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_09526]
+  ignore line: [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/qcc.exe -lang-c++  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__  -V4.6.3,gcc_ntoarmv7le -Y_gpp -D__QNX__ -fexceptions   -lm -lEGL -lGLESv2 -lbps -lscreen -v "CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj"   -o cmTC_09526 ]
+  ignore line: [cc: looking for gcc_ntoarmv7le_gpp in d:/momentics/bbndk/host_10_3_1_12/win32/x86/etc/qcc/gcc/4.6.3/gcc_ntoarmv7le_gpp++.conf]
+  ignore line: [cc: looking for gcc_ntoarmv7le_gpp in d:/momentics/bbndk/host_10_3_1_12/win32/x86/etc/qcc/gcc/4.6.3/gcc_ntoarmv7le_gpp.conf]
+  link line: [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/ntoarm-ld -EL -m armnto --dynamic-linker /usr/lib/ldqnx.so.2 --sysroot=d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7 --hash-style=gnu --build-id=md5 --warn-shared-textrel -zrelro --eh-frame-hdr -pie d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crt1S.o d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crti.o d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtbegin.o -lm -lEGL -lGLESv2 -lbps -lscreen CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_09526 -rpath-link d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -Y/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -Ld:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3// -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3 -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib// -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib -Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib -lstdc++ -lm -lcxa d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a -lcxa -lc -Bstatic -lcS d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtend.o d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crtn.o]
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/bin/ntoarm-ld] ==> ignore
+    arg [-EL] ==> ignore
+    arg [-m] ==> ignore
+    arg [armnto] ==> ignore
+    arg [--dynamic-linker] ==> ignore
+    arg [/usr/lib/ldqnx.so.2] ==> ignore
+    arg [--sysroot=d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [--build-id=md5] ==> ignore
+    arg [--warn-shared-textrel] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-pie] ==> ignore
+    arg [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crt1S.o] ==> ignore
+    arg [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crti.o] ==> ignore
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtbegin.o] ==> ignore
+    arg [-lm] ==> lib [m]
+    arg [-lEGL] ==> lib [EGL]
+    arg [-lGLESv2] ==> lib [GLESv2]
+    arg [-lbps] ==> lib [bps]
+    arg [-lscreen] ==> lib [screen]
+    arg [CMakeFiles/cmTC_09526.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_09526] ==> ignore
+    arg [-rpath-link] ==> ignore
+    arg [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3:d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> ignore
+    arg [-Y/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib:/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> dirs [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib;/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib;/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+    arg [-Ld:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//] ==> dir [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib//] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib//]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib]
+    arg [-Ld:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lcxa] ==> lib [cxa]
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a] ==> lib [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a]
+    arg [-lcxa] ==> lib [cxa]
+    arg [-lc] ==> lib [c]
+    arg [-Bstatic] ==> ignore
+    arg [-lcS] ==> lib [cS]
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a] ==> lib [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a]
+    arg [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//crtend.o] ==> ignore
+    arg [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/crtn.o] ==> ignore
+  collapse lib [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a] ==> [D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/libgcc.a]
+  collapse lib [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//libgcc.a] ==> [D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/libgcc.a]
+  collapse library dir [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib] ==> [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib]
+  collapse library dir [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib] ==> [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib]
+  collapse library dir [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+  collapse library dir [d:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3//] ==> [D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib//] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib]
+  collapse library dir [d:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib] ==> [D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+  implicit libs: [m;EGL;GLESv2;bps;screen;stdc++;m;cxa;D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/libgcc.a;cxa;c;cS;D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3/libgcc.a]
+  implicit dirs: [/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib;/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib;/cygdrive/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib;D:/momentics/bbndk/host_10_3_1_12/win32/x86/usr/lib/gcc/arm-unknown-nto-qnx8.0.0eabi/4.6.3;D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib/gcc/4.6.3;D:/momentics/bbndk/target_10_3_1_995/qnx6/usr/arm-unknown-nto-qnx8.0.0eabi/lib;D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/lib;D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib;D:/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/opt/lib]
+  implicit fwks: []
+
+
