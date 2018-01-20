@@ -1,5 +1,5 @@
-prefix=/Applications/Momentics.app/host_10_3_1_12/darwin/x86/user
-exec_prefix=/Applications/Momentics.app/host_10_3_1_12/darwin/x86/user
+prefix=/usr/local
+exec_prefix=/usr/local
 libdir=${exec_prefix}/
 includedir=${prefix}/
 

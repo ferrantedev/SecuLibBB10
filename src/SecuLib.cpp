@@ -1,13 +1,16 @@
-#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <MimeParser.hpp>
 #include <SecuCrypto.hpp>
 #ifdef _WIN32
+#include <windows.h>
 #include <direct.h>
+
 #define GetCurrentDir _getcwd
 #endif
-#ifdef __LINUX__
+#ifdef __LINUX__ || __QNX__
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #define GetCurrentDir getcwd
 #endif
@@ -69,7 +72,7 @@ void generate_pks10()
 
 void CreateFolder(const char * path)
 {
-#ifdef __linux__
+#ifdef __QNX__
 		mkdir(path, 777);
 #else
 		_mkdir(path);

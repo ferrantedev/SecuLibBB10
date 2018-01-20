@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSecuCrypto.a  CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.o
+/usr/bin/ranlib libSecuCrypto.a

@@ -1,0 +1,2 @@
+/Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/ntoarm-ar qc libSecuCrypto.a  CMakeFiles/SecuCrypto.dir/src/SecuCrypto.cpp.obj
+/Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/ntoarm-ranlib libSecuCrypto.a

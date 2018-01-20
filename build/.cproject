@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?fileVersion 4.0.0?>
+<cproject>
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="org.eclipse.cdt.core.default.config.1">
+			<storageModule buildSystemId="org.eclipse.cdt.core.defaultConfigDataProvider" id="org.eclipse.cdt.core.default.config.1" moduleId="org.eclipse.cdt.core.settings" name="Configuration">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser">
+						<attribute key="addr2line" value="addr2line"/>
+						<attribute key="c++filt" value="c++filt"/>
+					</extension>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
+				<project-mappings/>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+			<storageModule moduleId="org.eclipse.cdt.core.pathentry">
+				<pathentry kind="src" path="[Subprojects]"/>
+				<pathentry kind="src" path="[Source directory]"/>
+				<pathentry excluding="[Source directory]/|**/CMakeFiles/" kind="out" path=""/>
+				<pathentry include="/Users/lorenzoferrante/seculib/build" kind="inc" path="" system="true"/>
+				<pathentry include="/Users/lorenzoferrante/seculib/src/MimeParser/include" kind="inc" path="" system="true"/>
+				<pathentry include="/Users/lorenzoferrante/seculib/src/SecuCrypto/include" kind="inc" path="" system="true"/>
+				<pathentry include="/Users/lorenzoferrante/seculib/src/MimeParser/C:/OpenSSL-Win32/include" kind="inc" path="" system="true"/>
+				<pathentry include="/Users/lorenzoferrante/seculib/src/SecuCrypto/C:/OpenSSL-Win32/include" kind="inc" path="" system="true"/>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+				<buildTargets>
+					<target name=": rebuild_cache" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>rebuild_cache</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": edit_cache" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>edit_cache</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": all" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>all</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": clean" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>clean</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] MimeParser" path="MimeParser" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>MimeParser</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] MimeParser/fast" path="MimeParser" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>MimeParser/fast</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": all" path="MimeParser" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>all</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": clean" path="MimeParser" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>clean</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] SecuCrypto" path="SecuCrypto" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>SecuCrypto</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] SecuCrypto/fast" path="SecuCrypto" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>SecuCrypto/fast</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": all" path="SecuCrypto" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>all</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": clean" path="SecuCrypto" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/Applications/Xcode.app/Contents/Developer/usr/bin/make</buildCommand>
+						<buildArguments></buildArguments>
+						<buildTarget>clean</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+				</buildTargets>
+			</storageModule>
+			<storageModule moduleId="scannerConfiguration">
+				<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
+				<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="/Applications/Momentics.app/host_10_3_1_12/darwin/x86/usr/bin/qcc" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="makefileGenerator">
+						<runAction arguments="-f ${project_name}_scd.mk" command="/Applications/Xcode.app/Contents/Developer/usr/bin/make" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+			</storageModule>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="Seculib.null.1" name="Seculib"/>
+	</storageModule>
+</cproject>

@@ -1,7 +1,0 @@
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/build/CMakeFiles/Seculib.dir
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/build/MimeParser/CMakeFiles/MimeParser.dir
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/build/MimeParser/CMakeFiles/ALL_BUILD.dir
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/build/SecuCrypto/CMakeFiles/SecuCrypto.dir
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/build/SecuCrypto/CMakeFiles/ALL_BUILD.dir

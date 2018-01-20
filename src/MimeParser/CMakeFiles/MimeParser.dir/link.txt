@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMimeParser.a  CMakeFiles/MimeParser.dir/src/MimeParser.cpp.o
+/usr/bin/ranlib libMimeParser.a

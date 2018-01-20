@@ -1,7 +1,0 @@
-# CMake generation dependency list for this directory.
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/MimeParser/CMakeLists.txt
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindOpenSSL.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/SelectLibraryConfigurations.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindPackageHandleStandardArgs.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindPackageMessage.cmake
-C:/Users/sigterm/Desktop/secucom/apps/libraries/seculib/MimeParser/MimeParser.pc.in
