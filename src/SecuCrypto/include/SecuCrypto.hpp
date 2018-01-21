@@ -20,7 +20,6 @@
 
 namespace crypto
 {
-    extern std::vector<std::string> attachmentList;
     struct CSR_Requred_Fields
     {
         char * country; // eg.IT
@@ -30,6 +29,12 @@ namespace crypto
         char * ou;
         unsigned char * common;
     };
+
+	struct buf_st {
+		bool _success;
+		unsigned char * _buf;
+		int _length;
+	};
 
     /*
      * PKCS1 generation function, basically will output an RSA key pair.
@@ -62,6 +67,19 @@ namespace crypto
     bool generate_PKCS10(const char * pPrivateKeyPath, const char * pPublicKeyPath,
             const char * pCSRSavePath, const CSR_Requred_Fields * pInfo, const char * pPassword);
 
+	/*
+	* Overloaded SMIME_sign function. The procedure is the same with one exception
+	* it will not save the buffer in file system, but write the ouput in BIO * pOutBIO.
+	* @param pData The plain text data to be signed.
+	* @param pPassword The password to be used for decrypting the private key (PKCS8).
+	* @param pPrivateKeyPath The file path of the private key (PKCS8).
+	* @param pPublicCertPath The file path of the public certificate.
+	* @param pOutBIO BIO where the signed multipart/mixed message will be saved.
+	* @return Will return True if the operation succeeded and False otherwise.
+	*/
+	bool SMIME_sign(const char * pData, const char * pPassword, const char * pPrivateKeyPath,
+		const char * pPublicCertPath, BIO * pOutBIO);
+
     /*
      * Generates a multipart/mixed message and then signs it with the supplied private key (PKCS8).
      * First, will derive the attachments list and the plain text data to create_MIME function, which will return a multipart/mixed message.
@@ -74,22 +92,12 @@ namespace crypto
      * @param pOutputPath The file path where the signed multipart/mixed message will be saved.
      * @return Will return True if the operation succeeded and False otherwise.
     */
-    bool SMIME_sign(const char * pData, const char * pPassword, const char * pPrivateKeyPath,
-            const char * publicCertPath, const char * pOutputPath);
+	buf_st SMIME_sign(unsigned char * pMimeData, int pMimeDataSize, const char * pPassword, const char * pPrivateKeyPath,
+		const char * pPublicCertPath, const char* pSubCaPath, char * pOutputBuf, int * pSignedBufSize);
 
-    /*
-     * Overloaded SMIME_sign function. The procedure is the same with one exception
-     * it will not save the buffer in file system, but write the ouput in BIO * pOutBIO.
-     * @param pData The plain text data to be signed.
-     * @param pPassword The password to be used for decrypting the private key (PKCS8).
-     * @param pPrivateKeyPath The file path of the private key (PKCS8).
-     * @param pPublicCertPath The file path of the public certificate.
-     * @param pOutBIO BIO where the signed multipart/mixed message will be saved.
-     * @return Will return True if the operation succeeded and False otherwise.
-    */
-    bool SMIME_sign(const char * pData, const char * pPassword, const char * pPrivateKeyPath,
-            const char * pPublicCertPath, BIO * pOutBIO);
-
+	size_t calcDecodeLength(const char* b64input);
+	int Base64Decode(char* b64message, unsigned char** buffer, size_t* length);
+	int Base64Encode(const unsigned char* buffer, size_t length, char** b64text);
     /*
      * Verifies a signature in a signed multipart/mixed message, removes the signature from buffer and saves it in char * pOutputPath.
      * The saved format is a simple multipart/mixed message.
@@ -114,16 +122,16 @@ namespace crypto
     bool SMIME_verify_signature(const char * pSignerCertificatePath, BIO * pDataToVerifyBIO,
             const char * pOutputPath, const char * pCaCertPath);
 
-    /*
-     * Encrypts buffer pDataToEncrypt and saves it into EncryptedDataOutputPath, it will encrypt it with both keys.
-     * @param pDataToEncrypt The file path where the data to be encrypted is.
-     * @param pSenderPublicCertPath The sender's public certificate.
-     * @param pRecipientPublicCertPath The recipient's public certificate.
-     * @param pEncryptedDataOutputPath The file path where the encrypted buffer will be saved.
-     * @return Will return True if the operation succeeded and False otherwise.
-    */
-    bool SMIME_encrypt(BIO * pDataToEncrypt, const char * pSenderPublicCertPath,
-            const char * pRecipientPublicCertPath, const char * pEncryptedDataOutputPath);
+	/*
+	* Encrypts buffer pDataToEncrypt and saves it into EncryptedDataOutputPath, it will encrypt it with both keys.
+	* @param pDataToEncrypt The file path where the data to be encrypted is.
+	* @param pSenderPublicCertPath The sender's public certificate.
+	* @param pRecipientPublicCertPath The recipient's public certificate.
+	* @param pEncryptedDataOutputPath The file path where the encrypted buffer will be saved.
+	* @return Will return True if the operation succeeded and False otherwise.
+	*/
+	bool SMIME_encrypt(const char * pDataToEncrypt, const char * pSenderPublicCertPath,
+		const char * pRecipientPublicCertPath, const char * pEncryptedDataOutputPath);
 
     /*
      * Overloaded SMIME_encrypt function, the procedure is the same with one exception,
@@ -134,7 +142,7 @@ namespace crypto
      * @param pEncryptedDataOutputPath The file path where the encrypted buffer will be saved.
      * @return Will return True if the operation succeeded and False otherwise.
     */
-    bool SMIME_encrypt(const char * pDataToEncrypt, const char * pSenderPublicCertPath,
+    bool SMIME_encrypt(buf_st * pDataToEncrypt, const char * pSenderPublicCertPath,
             const char * pRecipientPublicCertPath, const char * pEncryptedDataOutputPath);
     /*
      * Decrypts SMIME data and saves the decrypted data in a file.
@@ -145,22 +153,23 @@ namespace crypto
      * @param pDecryptedDataOutputPath The file path where the decrypted data will be saved.
      * @return Will return True if the operation succeeded and False otherwise.
     */
-    bool SMIME_decrypt(const char * pPrivateKeyPath, const char * pPassword,
-            const char * pPublicCertPath, const char * pEncryptedDataPath,
-            const char * pDecryptedDataOutputPath);
+	buf_st SMIME_decrypt(const char * pPrivateKeyPath, const char * pPassword,
+		const char * pPublicCertPath, const char * pEncryptedDataPath);
 
-    /*
-     * Overloaded SMIME_decrypt, the procedure is the same with one exception,
-     * the decrypted data will be returned in a BIO *.
-     * @param pPrivateKeyPath The file path of the private key.
-     * @param pPassword The password to decrypt the private key.
-     * @param pPublicCertPath The file path of the public certificate.
-     * @param pEncryptedDataPath The file path where the encrypted data will be loaded.
-     * @param pDecryptedDataOutputPath The file path where the decrypted data will be saved.
-     * @return BIO * containing the data
-     */
-    BIO * SMIME_decrypt(const char * pPrivateKeyPath, const char * pPassword,
-            const char * pEncryptedDataPath);
+
+	/*
+	* Decrypts SMIME data and saves the decrypted data in a file.
+	* @param pPrivateKeyPath The file path of the private key.
+	* @param pPassword The password to decrypt the private key.
+	* @param pPublicCertPath The file path of the public certificate.
+	* @param pEncryptedDataPath The file path where the encrypted data will be loaded.
+	* @param pDecryptedDataOutputPath The file path where the decrypted data will be saved.
+	* @return Will return True if the operation succeeded and False otherwise.
+	*/
+	bool SMIME_decrypt(const char * pPrivateKeyPath, const char * pPassword,
+		const char * pPublicCertPath, const char * pEncryptedDataPath,
+		const char * pDecryptedDataOutputPath);
+
 
     /*
      * Password Key Derivation Function 2 (PBKDF2), takes in a sequence of char and outputs a brute force resistant hash.

@@ -8,9 +8,12 @@
 cmake_minimum_required (VERSION 2.6)
 project (Seculib)
 set(TARGET_HOST "BB10")
+option(WINDOWS_TARGET "The target host we are building for is WIndows" ON)
+option(BB10_TARGET "The target host we are building for is Bb10" OFF)
+
 IF (WIN32)
-	if(${TARGET_HOST} EQUAL "WINDOWS")
-		##include_directories("\c\OpenSSL-Win32\include")
+	if(WINDOWS_TARGET)
+		include_directories("C:/OpenSSL-Win32/include")
 	else()
 		##Then the target host is Blackberry 10 (BB10)
 		set( ENV{BBNDK_PATH} /d/momentics/bbndk)
@@ -69,7 +72,4 @@ include_directories ("${PROJECT_SOURCE_DIR}/MimeParser/include" "${PROJECT_SOURC
 find_package(OpenSSL)
 add_subdirectory (MimeParser) 
 add_subdirectory(SecuCrypto)
-
-# add the executable
-#add_executable(Seculib src/SecuLib.cpp)
-#target_link_libraries (Seculib MimeParser SecuCrypto libc)
+add_subdirectory(CryptoTests)

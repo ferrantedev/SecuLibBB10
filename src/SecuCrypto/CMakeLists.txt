@@ -14,8 +14,9 @@ target_include_directories(SecuCrypto PRIVATE include)
 set_target_properties(SecuCrypto PROPERTIES PUBLIC_HEADER include/SecuCrypto.hpp)
 
 configure_file(SecuCrypto.pc.in SecuCrypto.pc @ONLY)
-
-IF(${TARGET_HOST} EQUAL "WINDOWS")
-	include_directories( "\c\OpenSSL-Win32\include")
-	target_link_libraries(SecuCrypto "\c\OpenSSL-Win32/lib/VC/libssl32MDd.lib" "\c\OpenSSL-Win32/lib/VC/libcrypto32MD.lib")
+find_package(OpenSSL)
+IF(WINDOWS_TARGET)
+	include_directories("C:/OpenSSL-Win32/include")
 endif()
+
+target_link_libraries(SecuCrypto ${OPENSSL_LIBRARIES} MimeParser)

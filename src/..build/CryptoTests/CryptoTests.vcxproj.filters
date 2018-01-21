@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\z\Desktop\Secucom_projects\libraries\seculib\src\CryptoTests\src\CryptoTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\z\Desktop\Secucom_projects\libraries\seculib\src\CryptoTests\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{556E73FA-C99B-3855-A1E6-85B2FD768A31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

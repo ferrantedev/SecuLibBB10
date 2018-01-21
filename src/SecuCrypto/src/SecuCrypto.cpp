@@ -19,11 +19,11 @@
 #include <openssl/rand.h>
 #include <openssl/aes.h>
 #include <openssl/bio.h>
+#include <MimeParser.hpp>
+
 
 #include <fstream>
 #include <algorithm>
-
-#include "MimeParser.hpp"
 
 using namespace mime;
 
@@ -44,8 +44,7 @@ namespace crypto
      * @param pPassword the password for the private key, (PKCS8)
      * @return Will return True if generation succeeded and False otherwise.
      */
-    bool generate_PKCS1(const char * pPrivateKeyPath, const char * pPublicKeyPath, char * pPassword,
-            int pBitSize)
+    bool generate_PKCS1(const char * pPrivateKeyPath, const char * pPublicKeyPath, char * pPassword, int pBitSize)
     {
         OpenSSL_add_all_algorithms();
         ERR_load_crypto_strings();
@@ -296,8 +295,8 @@ namespace crypto
      * @param pOutputPath The file path where the signed multipart/mixed message will be saved.
      * @return Will return True if the operation succeeded and False otherwise.
      */
-    bool SMIME_sign(const char * pData, const char * pPassword, const char * pPrivateKeyPath,
-            const char * pPublicCertPath, const char * pOutputPath)
+	buf_st SMIME_sign(unsigned char * pMimeData, int pMimeDataSize, const char * pPassword, const char * pPrivateKeyPath,
+				const char * pPublicCertPath, const char* pSubCaPath, char * pOutputBuf, int * pSignedBufSize)
     {
         char * error = NULL;
         OpenSSL_add_all_algorithms();
@@ -315,19 +314,16 @@ namespace crypto
         PKCS7 *p7 = NULL;
         X509_SIG * p8 = NULL;
         PKCS8_PRIV_KEY_INFO * p8inf = NULL;
+		BUF_MEM * buf = NULL;
+		unsigned char * outBuf = NULL;
+		char * data = NULL;
 
-        int size = strlen(pData);
-        std::vector<char> plain_text_data(pData, pData + size);
-        inBIO = BIO_new(BIO_s_mem());
-        std::vector<unsigned char> data = create_MIME(plain_text_data, crypto::attachmentList);
+        inBIO = BIO_new(BIO_s_secmem());
+		outBIO = BIO_new(BIO_s_secmem());
+        //std::vector<unsigned char> data = create_MIME(plain_text_data, crypto::attachmentList);
 
-        if (data.empty()) {
-			printf("ERROR: Data to be signed is empty, aborting\n");
-            success = false;
-            goto err;
-        }
-
-        BIO_write(inBIO, &data[0], data.size());
+		//Change null to data and size
+		BIO_write(inBIO, pMimeData, pMimeDataSize);
         if (!inBIO) {
 			printf("ERROR: Cannot write MIME and data to buffer\n");
             success = false;
@@ -337,8 +333,7 @@ namespace crypto
         /*
          * Read the sub ca cert
          */
-
-        subCaBIO = BIO_new_file("app/native/assets/certs/sub-ca-cert.pem", "r");
+        subCaBIO = BIO_new_file(pSubCaPath, "r");
         if (!subCaBIO) {
 			printf("ERROR: Cannot open Sub ca cert\n");
             success = false;
@@ -401,8 +396,6 @@ namespace crypto
             goto err;
         }
 
-        /*-------------------------------------------------------------------*/
-
         p7 = PKCS7_sign(publicCert, pKey, ca, inBIO, flags);
         if (!p7) {
 			printf("ERROR: Cannot perform sign operation\n");
@@ -410,12 +403,25 @@ namespace crypto
             goto err;
         }
 
-        outBIO = BIO_new_file(pOutputPath, "w");
         if (!SMIME_write_PKCS7(outBIO, p7, inBIO, flags)) {
 			printf("ERROR: Cannot write signed data\n");
             success = false;
             goto err;
         }
+
+		BIO_get_mem_ptr(outBIO, &buf);
+
+		if (buf == NULL) {
+			error = "Could not extract buffer from BIO, aborting";
+			goto err;
+		}
+
+		if (!buf->data && !(buf->length > 0)) {
+			error = "Could not extract buffer from BIO, aborting";
+			goto err;
+		}
+		buf_st eb = { false, (unsigned char*)malloc(buf->max), buf->max };
+		memcpy(eb._buf, buf->data, buf->max);
 
         err: if (!success) {
             error = ERR_error_string(ERR_get_error(), NULL);
@@ -430,105 +436,263 @@ namespace crypto
         X509_free(subCaX509);
         X509_free(publicCert);
         EVP_PKEY_free(pKey);
-        return success;
+		eb._success = true;
+		return eb;
     }
 
+	/*
+	* Generates a multipart/mixed message and then signs it with the supplied private key (PKCS8).
+	* First, will derive the attachments list and the plain text data to create_MIME function, which will return a multipart/mixed message.
+	* Second, will decrypt the private key with the supplied pPassword.
+	* Third, will perform the sign operation on the multipart/mixed message buffer.
+	* @param pData The plain text data to be signed.
+	* @param pPassword The password to be used for decrypting the private key (PKCS8).
+	* @param pPrivateKeyPath The file path of the private key (PKCS8).
+	* @param pPublicCertPath The file path of the public certificate.
+	* @param pOutputPath The file path where the signed multipart/mixed message will be saved.
+	* @return Will return True if the operation succeeded and False otherwise.
+	*/
+	bool SMIME_sign(const char * pData, const char * pPassword, const char * pPrivateKeyPath,
+		const char * pPublicCertPath, const char * pOutputPath)
+	{
+		char * error = NULL;
+		OpenSSL_add_all_algorithms();
+		int flags = PKCS7_BINARY | PKCS7_STREAM; // | PKCS7_NOCERTS;
+		bool success = true;
+		BIO * subCaBIO = NULL;
+		BIO * inBIO = NULL;
+		BIO * outBIO = NULL;
+		BIO * publicCertBIO = NULL;
+		BIO * privateKeyBIO = NULL;
+		X509 * publicCert = NULL;
+		X509 * subCaX509 = NULL;
+		EVP_PKEY * pKey = NULL;
+		STACK_OF(X509) * ca = NULL;
+		PKCS7 *p7 = NULL;
+		X509_SIG * p8 = NULL;
+		PKCS8_PRIV_KEY_INFO * p8inf = NULL;
 
-    /*
-     * Overloaded SMIME_sign function. The procedure is the same with one exception
-     * it will not save the buffer in file system, but write the ouput in BIO * pOutBIO.
-     * @param pData The plain text data to be signed.
-     * @param pPassword The password to be used for decrypting the private key (PKCS8).
-     * @param pPrivateKeyPath The file path of the private key (PKCS8).
-     * @param pPublicCertPath The file path of the public certificate.
-     * @param pOutBIO BIO where the signed multipart/mixed message will be saved.
-     * @return Will return True if the operation succeeded and False otherwise.
-     */
-    bool SMIME_sign(const char * pData, const char * pPassword, const char * pPrivateKeyPath,
-            const char * pPublicCertPath, BIO * pOutBIO)
-    {
-        OpenSSL_add_all_algorithms();
-        int flags = PKCS7_BINARY | PKCS7_STREAM | PKCS7_NOCERTS; //
-        bool success = true;
-        BIO * inBIO = NULL;
-        BIO * publicCertBIO = NULL;
-        FILE * privateCertFILE = NULL;
-        X509 * publicCert = NULL;
-        X509 * privateCert = NULL;
-        PKCS12 * p12 = NULL;
-        EVP_PKEY * pKey = NULL;
-        STACK_OF(X509) * ca = NULL;
-        PKCS7 *p7 = NULL;
-        int size = strlen(pData);
-        std::vector<char> plain_text_data(pData, pData + size);
+		int size = strlen(pData);
+		std::vector<char> plain_text_data(pData, pData + size);
+		inBIO = BIO_new(BIO_s_mem());
+		std::vector<unsigned char> data = create_MIME(plain_text_data, crypto::attachmentList);
 
-        inBIO = BIO_new(BIO_s_mem());
-        std::vector<unsigned char> data = create_MIME(plain_text_data, crypto::attachmentList);
-        if (data.empty()) {
-            success = false;
-            goto err;
-        }
+		if (data.empty()) {
+			printf("ERROR: Data to be signed is empty, aborting\n");
+			success = false;
+			goto err;
+		}
 
-        BIO_write(inBIO, &data[0], data.size());
-        if (!inBIO) {
-            success = false;
-            goto err;
-        }
+		BIO_write(inBIO, &data[0], data.size());
+		if (!inBIO) {
+			printf("ERROR: Cannot write MIME and data to buffer\n");
+			success = false;
+			goto err;
+		}
 
-        publicCertBIO = BIO_new_file(pPublicCertPath, "r");
-        if (!publicCertBIO) {
-            success = false;
-            goto err;
-        }
+		/*
+		* Read the sub ca cert
+		*/
 
-        if (!PEM_read_bio_X509(publicCertBIO, &publicCert, NULL, NULL)) {
-            success = false;
-            goto err;
-        }
+		subCaBIO = BIO_new_file("app/native/assets/certs/sub-ca-cert.pem", "r");
+		if (!subCaBIO) {
+			printf("ERROR: Cannot open Sub ca cert\n");
+			success = false;
+			goto err;
+		}
 
-        privateCertFILE = fopen(pPrivateKeyPath, "rb");
-        if (!privateCertFILE) {
-            success = false;
-            goto err;
-        }
-        p12 = d2i_PKCS12_fp(privateCertFILE, NULL);
-        if (!p12) {
-            success = false;
-            goto err;
-        }
-        fclose(privateCertFILE);
+		if (!PEM_read_bio_X509(subCaBIO, &subCaX509, NULL, NULL)) {
+			printf("ERROR: Cannot parse Sub ca cert\n");
+			success = false;
+			goto err;
+		}
 
-        PKCS12_parse(p12, pPassword, &pKey, &privateCert, &ca);
-        if (!pKey || !privateCert) {
-            success = false;
-            goto err;
-        }
+		ca = sk_X509_new_null();
+		if (!sk_X509_push(ca, subCaX509)) {
+			printf("ERROR: Cannot add cert to store\n");
+			success = false;
+			goto err;
+		}
 
-        p7 = PKCS7_sign(publicCert, pKey, ca, inBIO, flags);
-        if (!p7) {
-            success = false;
-            goto err;
-        }
+		publicCertBIO = BIO_new_file(pPublicCertPath, "r");
+		if (!publicCertBIO) {
+			printf("ERROR: Cannot open public certificate path\n");
+			success = false;
+			goto err;
+		}
 
-        if (!SMIME_write_PKCS7(pOutBIO, p7, inBIO, flags)) {
-            success = false;
-            goto err;
-        }
+		if (!PEM_read_bio_X509(publicCertBIO, &publicCert, NULL, NULL)) {
+			printf("ERROR: Cannot parse public certificate\n");
+			success = false;
+			goto err;
+		}
 
-        err: if (!success) {
-            //Error message here
-        }
+		privateKeyBIO = BIO_new_file(pPrivateKeyPath, "r");
+		if (!privateKeyBIO) {
+			printf("ERROR: Cannot open private key\n");
+			success = false;
+			goto err;
+		}
+		/*
+		* Open PKCS8
+		*/
+		PEM_read_bio_PKCS8(privateKeyBIO, &p8, 0, NULL);
+		if (!p8) {
+			printf("ERROR: Cannot read public key\n");
+			success = false;
+			goto err;
+		}
 
-        BIO_free(inBIO);
-        BIO_free(publicCertBIO);
-        X509_free(publicCert);
-        X509_free(privateCert);
-        EVP_PKEY_free(pKey);
-        sk_X509_pop_free(ca, X509_free);
-        PKCS12_free(p12);
-        return success;
-    }
+		p8inf = PKCS8_decrypt(p8, pPassword, strlen(pPassword));
+		if (!p8inf) {
+			printf("ERROR: Cannot decrypt public key\n");
+			success = false;
+			goto err;
+		}
 
+		pKey = EVP_PKCS82PKEY(p8inf);
+		if (!pKey) {
+			printf("ERROR: Cannot get public key\n");
+			success = false;
+			goto err;
+		}
+
+		/*-------------------------------------------------------------------*/
+
+		p7 = PKCS7_sign(publicCert, pKey, ca, inBIO, flags);
+		if (!p7) {
+			printf("ERROR: Cannot perform sign operation\n");
+			success = false;
+			goto err;
+		}
+
+		outBIO = BIO_new_file(pOutputPath, "w");
+		if (!SMIME_write_PKCS7(outBIO, p7, inBIO, flags)) {
+			printf("ERROR: Cannot write signed data\n");
+			success = false;
+			goto err;
+		}
+
+	err: if (!success) {
+		error = ERR_error_string(ERR_get_error(), NULL);
+		printf(error);
+	}
+
+		 BIO_free(subCaBIO);
+		 BIO_free(inBIO);
+		 BIO_free(publicCertBIO);
+		 BIO_free(outBIO);
+		 BIO_free(privateKeyBIO);
+		 X509_free(subCaX509);
+		 X509_free(publicCert);
+		 EVP_PKEY_free(pKey);
+		 return success;
+	}
+
+	/*
+	* Encrypts buffer pDataToEncrypt and saves it into EncryptedDataOutputPath, it will encrypt it with both keys.
+	* @param pDataToEncrypt The file path where the data to be encrypted is.
+	* @param pSenderPublicCertPath The sender's public certificate.
+	* @param pRecipientPublicCertPath The recipient's public certificate.
+	* @param pEncryptedDataOutputPath The file path where the encrypted buffer will be saved.
+	* @return Will return True if the operation succeeded and False otherwise.
+	*/
+	bool SMIME_encrypt(const char * pDataToEncrypt, const char * pSenderPublicCertPath,
+		const char * pRecipientPublicCertPath, const char * pEncryptedDataOutputPath)
+	{
+		char * error = NULL;
+		BIO * dataToEncrypt = NULL;
+		BIO * encryptedData = NULL;
+		BIO * senderPublicCertBIO = NULL;
+		BIO * recipientPublicCertBIO = NULL;
+		STACK_OF(X509) *recipients = NULL;
+		X509* x509 = NULL;
+		PKCS7 * p7 = NULL;
+		int flags = PKCS7_STREAM | PKCS7_BINARY;
+		bool ret = false;
+
+		dataToEncrypt = BIO_new_file(pDataToEncrypt, "r");
+		if (!dataToEncrypt) {
+			ret = false;
+			printf("ERROR: Cannot open data to encrypt file\n");
+			goto err;
+		}
+
+		recipientPublicCertBIO = BIO_new_file(pRecipientPublicCertPath, "r");
+		if (!recipientPublicCertBIO) {
+			printf("ERROR: Cannot open recipient public certificate file\n");
+			ret = false;
+			goto err;
+		}
+
+		if (!PEM_read_bio_X509(recipientPublicCertBIO, &x509, NULL, NULL)) {
+			printf("ERROR: Cannot read recipient public certificate\n");
+			ret = false;
+			goto err;
+		}
+
+		recipients = sk_X509_new_null();
+		if (!recipients || !sk_X509_push(recipients, x509)) {
+			printf("ERROR: Cannot add recipient to stack of recipients\n");
+			ret = false;
+			goto err;
+		}
+
+		x509 = NULL;
+
+		senderPublicCertBIO = BIO_new_file(pSenderPublicCertPath, "r");
+		if (!senderPublicCertBIO) {
+			printf("ERROR: Cannot open sender public certificate\n");
+			ret = false;
+			goto err;
+		}
+
+		if (!PEM_read_bio_X509(senderPublicCertBIO, &x509, NULL, NULL)) {
+			printf("ERROR: Cannot read sender public certificate\n");
+			ret = false;
+			goto err;
+		}
+
+		if (!recipients || !sk_X509_push(recipients, x509)) {
+			printf("ERROR: Cannot push sender to stack of recipients\n");
+			ret = false;
+			goto err;
+		}
+
+		p7 = PKCS7_encrypt(recipients, dataToEncrypt, EVP_aes_256_cbc(), flags);
+		if (!p7) {
+			printf("ERROR: Cannot perfom encryption\n");
+			ret = false;
+			goto err;
+		}
+
+		encryptedData = BIO_new_file(pEncryptedDataOutputPath, "w");
+		if (!encryptedData) {
+			printf("ERROR:Cannot open encrypted data output\n");
+			ret = false;
+			goto err;
+		}
+
+		if (!i2d_PKCS7_bio_stream(encryptedData, p7, dataToEncrypt, flags)) {
+			printf("ERROR: Cannot flush encrypted data to file\n");
+			ret = false;
+			goto err;
+		}
+		ret = true;
+
+	err: if (!ret) {
+		error = ERR_error_string(ERR_get_error(), NULL);
+		printf(error);
+	}
+		 BIO_free(encryptedData);
+		 X509_free(x509);
+		 BIO_free(dataToEncrypt);
+		 PKCS7_free(p7);
+		 //		 sk_X509_pop_free(recipients, X509_free);
+		 BIO_free(recipientPublicCertBIO);
+		 BIO_free(senderPublicCertBIO);
+		 return ret;
+	}
 
     /*
      * Verifies a signature in a signed multipart/mixed message, removes the signature from buffer and saves it in char * pOutputPath.
@@ -730,6 +894,118 @@ namespace crypto
         return ret;
     }
 
+	/*
+	* Decrypts SMIME data and saves the decrypted data in a file.
+	* @param pPrivateKeyPath The file path of the private key.
+	* @param pPassword The password to decrypt the private key.
+	* @param pPublicCertPath The file path of the public certificate.
+	* @param pEncryptedDataPath The file path where the encrypted data will be loaded.
+	* @param pDecryptedDataOutputPath The file path where the decrypted data will be saved.
+	* @return Will return True if the operation succeeded and False otherwise.
+	*/
+	bool SMIME_decrypt(const char * pPrivateKeyPath, const char * pPassword,
+		const char * pPublicCertPath, const char * pEncryptedDataPath,
+		const char * pDecryptedDataOutputPath)
+	{
+		char * error = NULL;
+		PKCS12 * p12 = NULL;
+		EVP_PKEY * pKey = NULL;
+		X509 * cert = NULL;
+		BIO * privateKeyBIO = NULL;
+		BIO * publicCertBIO = NULL;
+		bool ret = true;
+		PKCS7 * p7 = NULL;
+		BIO * out = NULL;
+		FILE * encryptedDataFILE = NULL;
+		X509_SIG * p8 = NULL;
+		PKCS8_PRIV_KEY_INFO * p8inf = NULL;
+
+		OpenSSL_add_all_algorithms();
+		ERR_load_crypto_strings();
+
+		publicCertBIO = BIO_new_file(pPublicCertPath, "r");
+		if (!publicCertBIO) {
+			printf("ERROR: Cannot open public cert\n");
+			ret = false;
+			goto err;
+		}
+
+		if (!PEM_read_bio_X509(publicCertBIO, &cert, NULL, NULL)) {
+			printf("ERROR: Cannot parse public cert\n");
+			ret = false;
+			goto err;
+		}
+
+		privateKeyBIO = BIO_new_file(pPrivateKeyPath, "r");
+		if (!privateKeyBIO) {
+			printf("ERROR: Cannot open private key\n");
+			ret = false;
+			goto err;
+		}
+		/*
+		* Open PKCS8
+		*/
+		PEM_read_bio_PKCS8(privateKeyBIO, &p8, 0, NULL);
+		if (!p8) {
+			printf("ERROR: Cannot read public key\n");
+			ret = false;
+			goto err;
+		}
+
+		p8inf = PKCS8_decrypt(p8, pPassword, strlen(pPassword));
+		if (!p8inf) {
+			printf("ERROR: Cannot decrypt public key\n");
+			ret = false;
+			goto err;
+		}
+
+		pKey = EVP_PKCS82PKEY(p8inf);
+		if (!pKey) {
+			printf("ERROR: Cannot get public key\n");
+			ret = false;
+			goto err;
+		}
+
+		encryptedDataFILE = fopen(pEncryptedDataPath, "r");
+		if (!encryptedDataFILE) {
+			ret = false;
+			goto err;
+		}
+
+		p7 = d2i_PKCS7_fp(encryptedDataFILE, NULL);
+
+		if (!p7) {
+			ret = false;
+			goto err;
+		}
+
+		fclose(encryptedDataFILE);
+
+		out = BIO_new_file(pDecryptedDataOutputPath, "w");
+		if (!out) {
+			ret = false;
+			goto err;
+		}
+
+		if (!PKCS7_decrypt(p7, pKey, cert, out, 0)) {
+			ret = false;
+			goto err;
+		}
+
+	err: if (!ret) {
+		error = ERR_error_string(ERR_get_error(), NULL);
+		printf(error);
+	}
+
+		 BIO_free(publicCertBIO);
+		 BIO_free(privateKeyBIO);
+		 BIO_free(out);
+		 PKCS12_free(p12);
+		 X509_free(cert);
+		 EVP_PKEY_free(pKey);
+		 PKCS7_free(p7);
+		 return ret;
+	}
 
     /*
      * Encrypts buffer pDataToEncrypt and saves it into EncryptedDataOutputPath, it will encrypt it with both keys.
@@ -739,7 +1015,7 @@ namespace crypto
      * @param pEncryptedDataOutputPath The file path where the encrypted buffer will be saved.
      * @return Will return True if the operation succeeded and False otherwise.
      */
-    bool SMIME_encrypt(const char * pDataToEncrypt, const char * pSenderPublicCertPath,
+    bool SMIME_encrypt(buf_st * pDataToEncrypt, const char * pSenderPublicCertPath,
             const char * pRecipientPublicCertPath, const char * pEncryptedDataOutputPath)
     {
         char * error = NULL;
@@ -753,12 +1029,18 @@ namespace crypto
         int flags = PKCS7_STREAM | PKCS7_BINARY;
         bool ret = false;
 
-        dataToEncrypt = BIO_new_file(pDataToEncrypt, "r");
+        dataToEncrypt = BIO_new(BIO_s_secmem());
         if (!dataToEncrypt) {
             ret = false;
 			printf("ERROR: Cannot open data to encrypt file\n");
             goto err;
         }
+		BIO_write(dataToEncrypt, pDataToEncrypt->_buf, pDataToEncrypt->_length);
+		if (!dataToEncrypt) {
+			printf("ERROR: Cannot write MIME and data to buffer\n");
+			ret = false;
+			goto err;
+		}
 
         recipientPublicCertBIO = BIO_new_file(pRecipientPublicCertPath, "r");
         if (!recipientPublicCertBIO) {
@@ -836,97 +1118,6 @@ namespace crypto
         return ret;
     }
 
-
-    /*
-     * Overloaded SMIME_encrypt function, the procedure is the same with one exception,
-     * it will expect the data to be encrypted from pDataToEncrypt.
-     * @param pDataToEncrypt The data to be encrypted in a BIO.
-     * @param pSenderPublicCertPath The sender's public certificate.
-     * @param pRecipientPublicCertPath The recipient's public certificate.
-     * @param pEncryptedDataOutputPath The file path where the encrypted buffer will be saved.
-     * @return Will return True if the operation succeeded and False otherwise.
-     */
-    bool SMIME_encrypt(BIO * pDataToEncrypt, const char * pSenderPublicCertPath,
-            const char * pRecipientPublicCertPath, const char * pEncryptedDataOutputPath)
-    {
-        BIO * encryptedData = NULL;
-        BIO * senderPublicCertBIO = NULL;
-        BIO * recipientPublicCertBIO = NULL;
-        STACK_OF(X509) *recipients = NULL;
-        X509* x509 = NULL;
-        PKCS7 * p7 = NULL;
-        int flags = PKCS7_STREAM | PKCS7_BINARY;
-        bool ret = false;
-
-        recipientPublicCertBIO = BIO_new_file(pRecipientPublicCertPath, "r");
-        if (!recipientPublicCertBIO) {
-            ret = false;
-            goto err;
-        }
-
-        if (!PEM_read_bio_X509(recipientPublicCertBIO, &x509, NULL, NULL)) {
-            ret = false;
-            goto err;
-        }
-
-        recipients = sk_X509_new_null();
-        if (!recipients || !sk_X509_push(recipients, x509)) {
-            ret = false;
-            goto err;
-        }
-
-        x509 = NULL;
-
-        senderPublicCertBIO = BIO_new_file(pSenderPublicCertPath, "r");
-        if (!senderPublicCertBIO) {
-            ret = false;
-            goto err;
-        }
-
-        if (!PEM_read_bio_X509(senderPublicCertBIO, &x509, NULL, NULL)) {
-            ret = false;
-            goto err;
-        }
-
-        if (!recipients || !sk_X509_push(recipients, x509)) {
-            ret = false;
-            goto err;
-        }
-
-        x509 = NULL;
-
-        p7 = PKCS7_encrypt(recipients, pDataToEncrypt, EVP_aes_256_cbc(), flags);
-        if (!p7) {
-            ret = false;
-            goto err;
-        }
-
-        encryptedData = BIO_new_file(pEncryptedDataOutputPath, "w");
-        if (!encryptedData) {
-            ret = false;
-            goto err;
-        }
-
-        if (!i2d_PKCS7_bio_stream(encryptedData, p7, pDataToEncrypt, flags)) {
-            ret = false;
-            goto err;
-        }
-        ret = true;
-
-        err: if (!ret) {
-            std::cout << "ERROR: Exiting encryption function" << std::endl;
-        }
-
-        BIO_free(encryptedData);
-        X509_free(x509);
-        PKCS7_free(p7);
-        sk_X509_pop_free(recipients, X509_free);
-        BIO_free(recipientPublicCertBIO);
-        BIO_free(senderPublicCertBIO);
-        return ret;
-    }
-
-
     /*
      * Decrypts SMIME data and saves the decrypted data in a file.
      * @param pPrivateKeyPath The file path of the private key.
@@ -936,9 +1127,8 @@ namespace crypto
      * @param pDecryptedDataOutputPath The file path where the decrypted data will be saved.
      * @return Will return True if the operation succeeded and False otherwise.
      */
-    bool SMIME_decrypt(const char * pPrivateKeyPath, const char * pPassword,
-            const char * pPublicCertPath, const char * pEncryptedDataPath,
-            const char * pDecryptedDataOutputPath)
+	buf_st SMIME_decrypt(const char * pPrivateKeyPath, const char * pPassword,
+            const char * pPublicCertPath, const char * pEncryptedDataPath)
     {
         char * error = NULL;
         PKCS12 * p12 = NULL;
@@ -948,7 +1138,9 @@ namespace crypto
         BIO * publicCertBIO = NULL;
         bool ret = true;
         PKCS7 * p7 = NULL;
-        BIO * out = NULL;
+		BIO * out = NULL;
+		BIO * encryptedDataBIO = NULL;
+		BUF_MEM * buf = NULL;
         FILE * encryptedDataFILE = NULL;
         X509_SIG * p8 = NULL;
         PKCS8_PRIV_KEY_INFO * p8inf = NULL;
@@ -998,23 +1190,32 @@ namespace crypto
             ret = false;
             goto err;
         }
-
+		/*
         encryptedDataFILE = fopen(pEncryptedDataPath, "r");
         if (!encryptedDataFILE) {
             ret = false;
             goto err;
-        }
+        }       
+		p7 = d2i_PKCS7_fp(encryptedDataFILE, NULL);
+		fclose(encryptedDataFILE);
 
-        p7 = d2i_PKCS7_fp(encryptedDataFILE, NULL);
+		*/
+		encryptedDataBIO = BIO_new_file(pEncryptedDataPath, "r");
+		if (!encryptedDataBIO) {
+			printf("ERROR: Cannot open encrypted data file\n");
+			ret = false;
+			goto err;
+		}
+
+		p7 = d2i_PKCS7_bio(encryptedDataBIO, NULL);
 
         if (!p7) {
             ret = false;
             goto err;
         }
 
-        fclose(encryptedDataFILE);
 
-        out = BIO_new_file(pDecryptedDataOutputPath, "w");
+		out = BIO_new(BIO_s_secmem());
         if (!out) {
             ret = false;
             goto err;
@@ -1025,19 +1226,38 @@ namespace crypto
             goto err;
         }
 
+		BIO_get_mem_ptr(out, &buf);
+
+		if (buf == NULL) {
+			error = "Could not extract buffer from BIO, aborting";
+			goto err;
+		}
+
+		if (!buf->data && !(buf->length > 0)) {
+			error = "Could not extract buffer from BIO, aborting";
+			goto err;
+		}
+
+		buf_st eb = { false, (unsigned char*)malloc(buf->max), buf->max };
+		memcpy(eb._buf, buf->data, buf->length);
+		eb._success = true;
+
         err: if (!ret) {
             error = ERR_error_string(ERR_get_error(), NULL);
 			printf(error);
+			eb._success = false;
         }
 
         BIO_free(publicCertBIO);
         BIO_free(privateKeyBIO);
+		BIO_free(encryptedDataBIO);
         BIO_free(out);
         PKCS12_free(p12);
         X509_free(cert);
         EVP_PKEY_free(pKey);
         PKCS7_free(p7);
-        return ret;
+
+        return eb;
     }
 
     /*
@@ -1181,7 +1401,7 @@ namespace crypto
             errorHappened = true;
             goto err;
         }
-        if (Constants::SYMMETRIC_ENCRIPTION_IV_LENGTH != iv_size_evp) {
+        if (16 != iv_size_evp) {
 			printf("ERROR: IV size must be: %d \n", key_size_evp);
 			printf("ERROR: Passed IV size is: %d \n",  sizeof(iv));
             errorHappened = true;
@@ -1457,6 +1677,59 @@ namespace crypto
         }
 
     }
+
+
+	size_t calcDecodeLength(const char* b64input) { //Calculates the length of a decoded string
+		size_t len = strlen(b64input),
+			padding = 0;
+
+		if (b64input[len - 1] == '=' && b64input[len - 2] == '=') //last two chars are =
+			padding = 2;
+		else if (b64input[len - 1] == '=') //last char is =
+			padding = 1;
+
+		return (len * 3) / 4 - padding;
+	}
+
+	int Base64Decode(char* b64message, unsigned char** buffer, size_t* length) { //Decodes a base64 encoded string
+		BIO *bio, *b64;
+
+		int decodeLen = calcDecodeLength(b64message);
+		*buffer = (unsigned char*)malloc(decodeLen + 1);
+		(*buffer)[decodeLen] = '\0';
+
+		bio = BIO_new_mem_buf(b64message, -1);
+		b64 = BIO_new(BIO_f_base64());
+		bio = BIO_push(b64, bio);
+
+		BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); //Do not use newlines to flush buffer
+		*length = BIO_read(bio, *buffer, strlen(b64message));
+		BIO_free_all(bio);
+
+		return (0); //success
+	}
+
+
+	int Base64Encode(const unsigned char* buffer, size_t length, char** b64text) { //Encodes a binary safe base 64 string
+		BIO *bio, *b64;
+		BUF_MEM *bufferPtr;
+
+		b64 = BIO_new(BIO_f_base64());
+		bio = BIO_new(BIO_s_mem());
+		bio = BIO_push(b64, bio);
+
+		BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); //Ignore newlines - write everything in one line
+		BIO_write(bio, buffer, length);
+		BIO_flush(bio);
+		BIO_get_mem_ptr(bio, &bufferPtr);
+		BIO_set_close(bio, BIO_NOCLOSE);
+		BIO_free_all(bio);
+
+		*b64text = (*bufferPtr).data;
+
+		return (0); //success
+	}
+
 
 }
 
