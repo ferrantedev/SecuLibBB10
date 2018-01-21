@@ -176,13 +176,13 @@ namespace mime {
 		return rc;
 	}	
 
-	bool parse_multipart_content(const char * pFileToLoad, const char * pSavePath, const unsigned char * pData) {
+	bool parse_multipart_content(const char * pFileToLoad, const char * pSaveDirectory) {
 		printf("INFO: Opening attachment, load path: %s \n", pFileToLoad);
-		printf("INFO: Attachments save path: %s \n", pSavePath);
+		printf("INFO: Attachments save path: %s \n", pSaveDirectory);
 
 		//std::string attachmentSavePath = baseSavePath.substr(0, index_of_backslash + 1);
 
-		std::string attachmentSavePath(pSavePath);
+		std::string attachmentSaveDir(pSaveDirectory);
 
 		std::string plain_text;
 		//Load attachment to buffer
@@ -224,11 +224,8 @@ namespace mime {
 			//Write the content to a file the file_name+file_extension
 
 			if (file_name.size() > 0) {
-				save_attachment_to_fs(attachmentSavePath, content_body, file_name);
-				receivedAttachmentList.push_back(attachmentSavePath + file_name);
-			}
-			else {
-				pData = &content_body[0];
+				save_attachment_to_fs(attachmentSaveDir, content_body, file_name);
+				receivedAttachmentList.push_back(attachmentSaveDir + file_name);
 			}
 			//Erase the content we have parsed
 			buf.erase(first_boundary, second_boundary);
@@ -275,6 +272,57 @@ namespace mime {
 		return file_extension;
 	}
 
+	std::string get_MIME_plain_text(const char * pFilepath) {
+        std::string plain_text;
+        //Load attachment to buffer
+        std::vector<BYTE> buf = load_attachment(pFilepath);
+        bool hasMoreBoundaries = true;
+
+        std::vector<BYTE> boundary = parse_boundary(buf);
+        if (boundary.empty()) {
+            printf("ERROR: Cannot parse boundary in passed buffer");
+            return plain_text = "Error";
+        }
+
+        while (hasMoreBoundaries) {
+            std::vector<BYTE>::iterator first_boundary = std::search(buf.begin(), buf.end(), boundary.begin(), boundary.end());
+            size_t first_b_pos = first_boundary - buf.begin();
+            if (first_boundary == buf.end()) {
+                hasMoreBoundaries = false;
+                break;
+            }
+            std::vector<BYTE>::iterator second_boundary = std::search(first_boundary + 38, buf.end(), boundary.begin(), boundary.end());
+            size_t second_b_pos = second_boundary - buf.begin();
+            if (second_boundary == buf.end()) {
+                hasMoreBoundaries = false;
+                break;
+            }
+            //Trim content within the boundaries
+            std::vector<BYTE> content(&buf[first_b_pos + 42], &buf[second_b_pos + 1]);
+            //Get the header (Content-Type: text/plain) that is inside
+            std::vector<BYTE> header = get_content_header(content);
+            //Get the attachment extension of the content (imag/jpeg)
+            std::string file_extension = identify_extension(header);
+            //Get the attachment name
+            std::string file_name = get_attachment_name(header);
+            //Get the content body to be written to a file
+            std::vector<BYTE> content_body = erase_header_from_content(content, header);
+            //Write the content to a file the file_name+file_extension
+            if (file_name.size() > 0) {
+            }
+            else {
+                std::string text(content_body.begin(), content_body.end());
+                plain_text = text;
+				break;
+            }
+
+            //Erase the content we have parsed
+            buf.erase(first_boundary, second_boundary);
+        }
+
+        return plain_text;
+    }
+	
 	std::string get_attachment_name(std::vector<BYTE> & pHeader) {
 		std::string name;
 		std::string filename_start_delimiter = "filename=\"";

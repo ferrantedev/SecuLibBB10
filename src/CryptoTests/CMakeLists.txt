@@ -12,7 +12,14 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 include_directories ("${PROJECT_SOURCE_DIR}/SecuCrypto/include")
 find_package(OpenSSL)
+
+IF(WINDOWS_TARGET)
 # add the executable
 add_executable(CryptoTests src/CryptoTests.cpp)
 target_link_libraries (CryptoTests SecuCrypto ${OPENSSL_LIBRARIES}) 
 ##maybe should add libc to target_link_libraries in unix env
+
+ELSE() 
+
+
+ENDIF()

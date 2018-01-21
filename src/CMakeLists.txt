@@ -4,7 +4,8 @@
 ##
 
 ##On windows host
-##/d/cmake/bin/cmake.exe ../src -DCMAKE_TOOLCHAIN_FILE="../toolchains/blackberry.toolchain.cmake" -DTargetPlatform="BlackBerry" -DBLACKBERRY_ARCHITECTURE=arm -DCMAKE_VERBOSE_MAKEFILE=TRUE -G "Eclipse CDT4 - Unix Makefiles" -DOPENSSL_CRYPTO_LIBRARY=/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib -DOPENSSL_INCLUDE_DIR=/d/momentics/bbndk/target_10_3_1_995/qnx6/usr/include -DCMAKE_ECLIPSE_VERSION=4.3.2 -DCMAKE_MAKE_PROGRAM=make
+##/d/cmake/bin/cmake.exe ../src -DCMAKE_TOOLCHAIN_FILE="../toolchains/blackberry.toolchain.cmake" -DTargetPlatform="BlackBerry" -DBLACKBERRY_ARCHITECTURE=arm -DCMAKE_VERBOSE_MAKEFILE=TRUE -G "Eclipse CDT4 - Unix Makefiles" -DOPENSSL_CRYPTO_LIBRARY=/d/momentics/bbndk/target_10_3_1_995/qnx6/armle-v7/usr/lib -DOPENSSL_INCLUDE_DIR=/d/momentics/bbndk/target_10_3_1_995/qnx6/usr/include -DCMAKE_ECLIPSE_VERSION=4.3.2 -DCMAKE_MAKE_PROGRAM=make -DBB10_TARGET=ON -DWINDOWS_TARGET=OFF
+
 cmake_minimum_required (VERSION 2.6)
 project (Seculib)
 set(TARGET_HOST "BB10")

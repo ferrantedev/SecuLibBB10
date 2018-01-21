@@ -40,7 +40,7 @@ namespace mime {
 	std::string find_simple_format(std::string pFilepath);
 	void write_buffer_to_file(const char *pFilepath, unsigned char * pBuffer, size_t pFileLength);
 	int uuid_v4_gen(char * pBuffer);
-	bool parse_multipart_content(const char * pFileToLoad, const char * pSavePath, const unsigned char * pData);
+	bool parse_multipart_content(const char * pFileToLoad, const char * pSaveDirectory);
 	std::vector<unsigned char> parse_boundary(std::vector<unsigned char> & pBuffer);
 	std::vector<unsigned char> load_attachment(const char * pFilepath);
 	std::vector<unsigned char> get_content_header(std::vector<unsigned char> & pContent);
@@ -48,7 +48,7 @@ namespace mime {
 	std::string get_attachment_name(std::vector<unsigned char> & pHeader);
 	std::vector<unsigned char> erase_header_from_content(std::vector<unsigned char> & pContent, std::vector<unsigned char> & pHeader);
 	void save_attachment_to_fs(std::string pSavePath, std::vector<unsigned char> & pContent_body, std::string pFile_name);
-
+	std::string get_MIME_plain_text(const char * pFilepath);
 	struct Constants {
 		static const int AUTH_MODE_MASTER_ONLY;
 		static const int AUTH_MODE_ALL_PASSWORDS;

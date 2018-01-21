@@ -4,7 +4,8 @@ project(SecuCrypto VERSION 1.0.1 DESCRIPTION "Secucom crypto library")
 include_directories ("${PROJECT_SOURCE_DIR}/include")
 
 ADD_LIBRARY(SecuCrypto STATIC src/SecuCrypto.cpp include/SecuCrypto.hpp )
-find_package(OpenSSL)
+
+
 set_target_properties(SecuCrypto PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(SecuCrypto PROPERTIES SOVERSION 1)
 
@@ -17,6 +18,9 @@ configure_file(SecuCrypto.pc.in SecuCrypto.pc @ONLY)
 find_package(OpenSSL)
 IF(WINDOWS_TARGET)
 	include_directories("C:/OpenSSL-Win32/include")
+	
+	target_link_libraries(SecuCrypto ${OPENSSL_LIBRARIES} MimeParser)
+ELSE() 
+	target_link_libraries(SecuCrypto MimeParser libc)
 endif()
 
-target_link_libraries(SecuCrypto ${OPENSSL_LIBRARIES} MimeParser)

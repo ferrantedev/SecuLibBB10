@@ -20,6 +20,13 @@
 
 namespace crypto
 {
+	
+	    /*
+     * An array of filepaths, when SMIME sign is called, it will load all the attachments
+     * into a multipart/mixed message structure.
+     */
+    extern std::vector<std::string> attachmentList;
+	
     struct CSR_Requred_Fields
     {
         char * country; // eg.IT
@@ -78,7 +85,7 @@ namespace crypto
 	* @return Will return True if the operation succeeded and False otherwise.
 	*/
 	bool SMIME_sign(const char * pData, const char * pPassword, const char * pPrivateKeyPath,
-		const char * pPublicCertPath, BIO * pOutBIO);
+            const char * publicCertPath, const char * pOutputPath);
 
     /*
      * Generates a multipart/mixed message and then signs it with the supplied private key (PKCS8).

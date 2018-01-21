@@ -298,6 +298,9 @@ namespace crypto
 	buf_st SMIME_sign(unsigned char * pMimeData, int pMimeDataSize, const char * pPassword, const char * pPrivateKeyPath,
 				const char * pPublicCertPath, const char* pSubCaPath, char * pOutputBuf, int * pSignedBufSize)
     {
+		//TODO: Remove this!
+		buf_st eb = { false, (unsigned char*)malloc(1), 1 };
+		
         char * error = NULL;
         OpenSSL_add_all_algorithms();
         int flags = PKCS7_BINARY | PKCS7_STREAM; // | PKCS7_NOCERTS;
@@ -318,8 +321,8 @@ namespace crypto
 		unsigned char * outBuf = NULL;
 		char * data = NULL;
 
-        inBIO = BIO_new(BIO_s_secmem());
-		outBIO = BIO_new(BIO_s_secmem());
+        inBIO = BIO_new(BIO_s_mem());
+		outBIO = BIO_new(BIO_s_mem());
         //std::vector<unsigned char> data = create_MIME(plain_text_data, crypto::attachmentList);
 
 		//Change null to data and size
@@ -419,9 +422,10 @@ namespace crypto
 		if (!buf->data && !(buf->length > 0)) {
 			error = "Could not extract buffer from BIO, aborting";
 			goto err;
-		}
-		buf_st eb = { false, (unsigned char*)malloc(buf->max), buf->max };
-		memcpy(eb._buf, buf->data, buf->max);
+		}		
+		//TODO: Fix this, error initialize between goto this!
+		//buf_st eb = { false, (unsigned char*)malloc(buf->max), buf->max };
+		//memcpy(eb._buf, buf->data, buf->max);
 
         err: if (!success) {
             error = ERR_error_string(ERR_get_error(), NULL);
@@ -436,7 +440,7 @@ namespace crypto
         X509_free(subCaX509);
         X509_free(publicCert);
         EVP_PKEY_free(pKey);
-		eb._success = true;
+		//eb._success = true;
 		return eb;
     }
 
@@ -1029,7 +1033,7 @@ namespace crypto
         int flags = PKCS7_STREAM | PKCS7_BINARY;
         bool ret = false;
 
-        dataToEncrypt = BIO_new(BIO_s_secmem());
+        dataToEncrypt = BIO_new(BIO_s_mem());
         if (!dataToEncrypt) {
             ret = false;
 			printf("ERROR: Cannot open data to encrypt file\n");
@@ -1130,6 +1134,10 @@ namespace crypto
 	buf_st SMIME_decrypt(const char * pPrivateKeyPath, const char * pPassword,
             const char * pPublicCertPath, const char * pEncryptedDataPath)
     {
+		//TODO: remove this!!
+		buf_st eb = { false, (unsigned char*)malloc(1), 1 };
+		
+
         char * error = NULL;
         PKCS12 * p12 = NULL;
         EVP_PKEY * pKey = NULL;
@@ -1215,7 +1223,7 @@ namespace crypto
         }
 
 
-		out = BIO_new(BIO_s_secmem());
+		out = BIO_new(BIO_s_mem());
         if (!out) {
             ret = false;
             goto err;
@@ -1237,15 +1245,15 @@ namespace crypto
 			error = "Could not extract buffer from BIO, aborting";
 			goto err;
 		}
-
-		buf_st eb = { false, (unsigned char*)malloc(buf->max), buf->max };
-		memcpy(eb._buf, buf->data, buf->length);
-		eb._success = true;
+	//TODO: FIX, initialization between goto
+		//buf_st eb = { false, (unsigned char*)malloc(buf->max), buf->max };
+		//memcpy(eb._buf, buf->data, buf->length);
+		//eb._success = true;
 
         err: if (!ret) {
             error = ERR_error_string(ERR_get_error(), NULL);
 			printf(error);
-			eb._success = false;
+			//eb._success = false;
         }
 
         BIO_free(publicCertBIO);
@@ -1256,7 +1264,7 @@ namespace crypto
         X509_free(cert);
         EVP_PKEY_free(pKey);
         PKCS7_free(p7);
-
+		//TODO: Change this return type!!
         return eb;
     }
 
